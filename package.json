@@ -1,0 +1,71 @@
+{
+  "name": "use-zod-form-demo",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@picocss/pico": "^1.4.4",
+    "vue": "^3.2.25",
+    "vue-router": "^4.0.14",
+    "zod": "^3.13.4"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.13.0",
+    "@typescript-eslint/parser": "^5.13.0",
+    "@vitejs/plugin-vue": "^2.2.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.10.0",
+    "eslint-config-prettier": "^8.4.0",
+    "eslint-config-react-app": "^7.0.0",
+    "eslint-plugin-flowtype": "^8.0.3",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.3",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-vue": "^8.5.0",
+    "prettier": "^2.5.1",
+    "typescript": "^4.6.2",
+    "vite": "^2.8.0",
+    "vite-tsconfig-paths": "^3.4.1",
+    "vue-tsc": "^0.32.1"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "browser": true,
+      "jest": true,
+      "node": true
+    },
+    "parserOptions": {
+      "parser": "@typescript-eslint/parser",
+      "ecmaVersion": "latest"
+    },
+    "extends": [
+      "react-app",
+      "plugin:vue/vue3-recommended",
+      "prettier"
+    ],
+    "plugins": [
+      "prettier",
+      "simple-import-sort"
+    ],
+    "rules": {
+      "prettier/prettier": "error",
+      "react-hooks/rules-of-hooks": "off",
+      "simple-import-sort/exports": "error",
+      "simple-import-sort/imports": "error",
+      "vue/multi-word-component-names": "off"
+    }
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "useTabs": false,
+    "trailingComma": "all"
+  }
+}
