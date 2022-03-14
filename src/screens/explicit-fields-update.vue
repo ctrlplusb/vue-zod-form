@@ -22,18 +22,17 @@ const form = useZodForm(formSchema, {
     roles: [UserRole.Admin],
   },
 });
+const { field, handleSubmit, isSubmitting } = form;
 
-const name = form.field("name");
-const email = form.field("email");
-const age = form.field("age");
-const roles = form.field("roles");
+const name = field("name");
+const email = field("email");
+const age = field("age");
+const roles = field("roles");
 
-const onSubmit = form.handleSubmit(async (data) => {
+const onSubmit = handleSubmit(async (data) => {
   await new Promise((resolve) => setTimeout(resolve, 2000));
   alert(JSON.stringify(data, null, 2));
 });
-
-const { isSubmitting } = form;
 </script>
 
 <template>

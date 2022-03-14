@@ -1,11 +1,49 @@
-# Vue 3 + Typescript + Vite
+# vue-zod-form
 
-This template should help get you started developing with Vue 3 and Typescript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+A composition based API forms helper for Vue 3 projects that utilise TypeScript.
 
-## Recommended IDE Setup
+```vue
+<script setup lang="ts">
+import * as z from "zod";
+import { useZodForm } from "vue-zod-form";
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+const formSchema = z.object({
+  name: z.string().nonempty(),
+  email: z.string().nonempty().email(),
+  password: z.string().nonempty().min(8),
+});
 
-## Type Support For `.vue` Imports in TS
+const { field, handleSubmit, isSubmitting } = useZodForm(formSchema);
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's `.vue` type support plugin by running `Volar: Switch TS Plugin on/off` from VSCode command palette.
+const name = field("name");
+const email = field("email");
+const password = field("password");
+
+const onSubmit = handleSubmit(async (data) => {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  alert(JSON.stringify(data, null, 2));
+});
+</script>
+
+<template>
+  <form @submit="onSubmit">
+    <TextInput
+      label="Email"
+      type="email"
+      :error="email.error"
+      :value="email.value"
+      @change="email.onChange"
+      @blur="email.onBlur"
+    />
+    <TextInput
+      label="Password"
+      type="password"
+      :error="password.error"
+      :value="password.value"
+      @change="password.onChange"
+      @blur="password.onBlur"
+    />
+    <button :aria-busy="isSubmitting">Submit</button>
+  </form>
+</template>
+```
